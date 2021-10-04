@@ -6,7 +6,7 @@ import rootReducer from './store/reducers/rootReducer';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import AddDeck from './screens/AddDeck';
-import DeckList from './screens/DeckList';
+//import DeckList from './screens/DeckList';
 import DeckViewStack from './screens/DeckViewStack'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 

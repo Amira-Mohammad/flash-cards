@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
 function AddDeck(props) {
     return (
         <View style={styles.container}>
-            <Text>AddDeck</Text>
+
+            <TextInput
+                View style={styles.TextInputStyle}
+                placeholder="Title" />
+
+
+            <TouchableOpacity style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>
+
         </View>
     );
 }
@@ -15,6 +22,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    TextInputStyle: {
+        borderWidth: 2,
+        borderRadius: 5,
+        padding: 5,
+        margin: 2,
+        minWidth: 300,
+    },
+    Submit: {
+        backgroundColor: 'purple',
+        borderWidth: 2,
+        borderRadius: 5,
+        padding: 5,
+        margin: 2,
+        minWidth: 300,
+    }
 });
 
 export default AddDeck;
