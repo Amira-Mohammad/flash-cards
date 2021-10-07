@@ -1,18 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
-
+import { addCard } from '../store/actions/action';
 const AddCard = () => {
+    const [newCardQ, setNewCardQ] = useState('')
+    const [newCardA, setNewCardA] = useState('')
+
+    const dispatch = useDispatch()
+
     return (
         <View style={styles.container}>
 
             <TextInput
-                View style={styles.TextInputStyle}
-                placeholder="Question" />
+                style={styles.TextInputStyle}
+                name="question"
+                placeholder="Question"
+                value={newCardQ}
+                onChange={Question => setNewCardQ(Question)} />
 
             <TextInput
-                View style={styles.TextInputStyle}
-                placeholder="Answer" />
-            <TouchableOpacity style={styles.Submit}><Text>Submit</Text></TouchableOpacity>
+                style={styles.TextInputStyle}
+                name="Answer"
+                placeholder="Answer"
+                value={newCardA}
+                onChange={Answer => setNewCardA(Answer)} />
+            <TouchableOpacity
+                onPress={() => {
+                    console.log("newCardQ", newCardQ)
+                    console.log("newCardA", newCardA)
+                }}
+                style={styles.Submit}><Text>Submit</Text></TouchableOpacity>
 
         </View>
     );

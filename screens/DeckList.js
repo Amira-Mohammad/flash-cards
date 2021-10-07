@@ -14,7 +14,6 @@ function DeckList({ navigation }) {
         <View>
             <TouchableOpacity
                 onPress={() => {
-                    console.log('xffffffffff');
                     navigation.navigate("DeckView", { individualItem: item })
                 }}
                 style={styles.deckContainer}>
@@ -28,7 +27,6 @@ function DeckList({ navigation }) {
     availableDecks = useSelector(state => {
         return state.DeckReducers
     })
-    console.log('xxxee', availableDecks);
 
     return (
         <View style={styles.container}>

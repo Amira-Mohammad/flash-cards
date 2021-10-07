@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { addDeck } from '../store/actions/action';
 
-function AddDeck(props) {
+const AddDeck = (props) => {
+
+    const [newDeckTitle, setNewDeckTitle] = useState('')
+
+    const dispatch = useDispatch()
+    //console.log("Create Deck done", newDeckTitle)
     return (
         <View style={styles.container}>
 
             <TextInput
-                View style={styles.TextInputStyle}
-                placeholder="Title" />
+                style={styles.TextInputStyle}
+                placeholder="Title"
+                value={newDeckTitle}
+                onEndEditing={setNewDeckTitle} />
 
-
-            <TouchableOpacity style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => {
+                    dispatch(addDeck("amira"))
+                    // console.log("Create Deck done", newDeckTitle)
+                }}
+                style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>
 
         </View>
     );

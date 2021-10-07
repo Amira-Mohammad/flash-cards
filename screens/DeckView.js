@@ -9,7 +9,6 @@ const DeckView = ({ route, navigation }) => {
             <Text>{questions.length}</Text>
             <TouchableOpacity
                 onPress={() => {
-                    console.log('Add Card');
                     navigation.navigate("AddCard")
                 }}
                 style={styles.addCard}>
@@ -17,8 +16,7 @@ const DeckView = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => {
-                    console.log('Start Quiz');
-                    navigation.navigate("StartQuiz")
+                    navigation.navigate("StartQuiz", { individualItem: route.params.individualItem })
                 }}
                 style={styles.startQuiz}>
                 <Text>Start Quiz</Text>

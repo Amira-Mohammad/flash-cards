@@ -1,10 +1,11 @@
 import Decks from '../../utils/Data'
 import { ADD_CARD, ADD_DECK } from '../actions/action'
 
-const initState = Decks
+const initState = {
+    Decks: Decks
+}
 
 const DeckReducers = (state = initState, action) => {
-
     switch (action.type) {
         case ADD_DECK:
             console.log("action", action)
@@ -17,10 +18,16 @@ const DeckReducers = (state = initState, action) => {
                     })
 
             }
+
+        case ADD_CARD:
+            return {
+                ...state,
+
+            }
+
         default:
             return state
     }
-
 
 }
 

@@ -31,10 +31,10 @@ export default function App() {
 
               if (route.name === 'DeckList') {
                 iconName = focused
-                  ? 'ios-information-circle'
-                  : 'ios-information-circle-outline';
+                  ? 'list'
+                  : 'list';
               } else if (route.name === 'AddDeck') {
-                iconName = focused ? 'add-to-list' : 'add-to-list';
+                iconName = focused ? 'add-circle' : 'add-circle';
               }
 
               // You can return any component that you like here!
