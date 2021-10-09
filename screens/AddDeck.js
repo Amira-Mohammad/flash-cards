@@ -5,7 +5,7 @@ import { addDeck } from '../store/actions/action';
 
 const AddDeck = (props) => {
 
-    const [newDeckTitle, setNewDeckTitle] = useState('')
+    const [newDeckTitle, setNewDeckTitle] = useState("")
 
     const dispatch = useDispatch()
     //console.log("Create Deck done", newDeckTitle)
@@ -16,12 +16,12 @@ const AddDeck = (props) => {
                 style={styles.TextInputStyle}
                 placeholder="Title"
                 value={newDeckTitle}
-                onEndEditing={setNewDeckTitle} />
+                onChangeText={setNewDeckTitle} />
 
             <TouchableOpacity
                 onPress={() => {
-                    dispatch(addDeck("amira"))
-                    // console.log("Create Deck done", newDeckTitle)
+                    dispatch(addDeck(newDeckTitle))
+                    console.log("Create Deck done", newDeckTitle)
                 }}
                 style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>
 

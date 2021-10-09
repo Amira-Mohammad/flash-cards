@@ -11,10 +11,11 @@ const DeckReducers = (state = initState, action) => {
             return {
                 ...state,
                 Decks:
-                    state.Decks.push({
-                        title: action.title,
-                        questions: []
-                    })
+                    [...state.Decks, action.title]
+                // state.Decks.push({
+                //     title: action.title,
+                //     questions: []
+                // })
 
             }
         default:

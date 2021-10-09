@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+
+
 const StartQuiz = ({ route, navigation }) => {
-    const { title, questions } = route.params.individualItem
+    const { title, questions } = route.params.individualItemForQuiz
     return (
         <View style={styles.container}>
             <Text>StartQuiz</Text>
-            <Text>{route.params.individualItem.questions.length}</Text>
+            <Text>{route.params.individualItemForQuiz.questions.length}</Text>
         </View>
     );
 };

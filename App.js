@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import rootReducer from './store/reducers/rootReducer';
@@ -9,6 +9,7 @@ import AddDeck from './screens/AddDeck';
 //import DeckList from './screens/DeckList';
 import DeckViewStack from './screens/DeckViewStack'
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { setLocalNotifications } from './utils/Data';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -19,6 +20,9 @@ const store = createStore(rootReducer)
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  useEffect(() => {
+    setLocalNotifications()
+  })
 
   return (
     <Provider store={store}>

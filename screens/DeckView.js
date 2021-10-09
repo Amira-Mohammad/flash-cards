@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { clearLocalNotifications, setLocalNotifications } from '../utils/Data';
+
 const DeckView = ({ route, navigation }) => {
     const { title, questions } = route.params.individualItem
     return (
@@ -16,7 +18,20 @@ const DeckView = ({ route, navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => {
-                    navigation.navigate("StartQuiz", { individualItem: route.params.individualItem })
+                    clearLocalNotifications()
+                    setLocalNotifications()
+
+
+                    // Notifications.scheduleNotificationAsync({
+                    //     content: {
+                    //         title: 'Quiz Reminder',
+                    //         body: "you have to take your quiz!",
+                    //     },
+                    //     trigger: {
+                    //         seconds: 10
+                    //     },
+                    // });
+                    navigation.navigate("StartQuiz", { individualItemForQuiz: route.params.individualItem })
                 }}
                 style={styles.startQuiz}>
                 <Text>Start Quiz</Text>
