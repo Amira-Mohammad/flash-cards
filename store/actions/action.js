@@ -12,7 +12,7 @@ export function addDeck(id, title) {
 
 
 export function addCard(id, question, answer) {
-    console.log("action from action creator", id, question, answer)
+    // console.log("action from action creator", id, question, answer)
     return {
         type: ADD_CARD,
         id,

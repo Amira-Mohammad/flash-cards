@@ -37,7 +37,8 @@ function DeckList({ navigation }) {
             <FlatList
                 data={availableDecks}
                 renderItem={renderItem}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.index_id}
+            //keyExtractor={item => item.id}
             />
         </View>
     );

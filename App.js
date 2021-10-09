@@ -33,7 +33,7 @@ export default function App() {
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
 
-              if (route.name === 'DeckList') {
+              if (route.name === 'Deck List') {
                 iconName = focused
                   ? 'list'
                   : 'list';
@@ -49,7 +49,7 @@ export default function App() {
 
           })}
         >
-          <Tab.Screen name="DeckList" component={DeckViewStack} />
+          <Tab.Screen name="Deck List" component={DeckViewStack} />
           <Tab.Screen name="AddDeck" component={AddDeck} />
 
         </Tab.Navigator>
