@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { clearLocalNotifications, setLocalNotifications } from '../utils/Data';
+import * as Notifications from 'expo-notifications';
 
 const DeckView = ({ route, navigation }) => {
-    const { title, questions } = route.params.individualItem
+    const { id, title, questions } = route.params.individualItem
     return (
         <View style={styles.container}>
             <Text>DeckView</Text>
@@ -12,6 +13,7 @@ const DeckView = ({ route, navigation }) => {
             <TouchableOpacity
                 onPress={() => {
                     navigation.navigate("AddCard")
+                    navigation.navigate("AddCard", { individualItemForAddCard: route.params.individualItem })
                 }}
                 style={styles.addCard}>
                 <Text>Add Card</Text>

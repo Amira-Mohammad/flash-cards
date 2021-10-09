@@ -9,6 +9,7 @@ const Item = ({ title, questions }) => (
     </View>
 );
 function DeckList({ navigation }) {
+
     const renderItem = ({ item }) => (
 
         <View>
@@ -25,11 +26,14 @@ function DeckList({ navigation }) {
     let availableDecks;
 
     availableDecks = useSelector(state => {
+
         return state.DeckReducers
     })
 
+
     return (
         <View style={styles.container}>
+            {/* {console.log("availableDecks", availableDecks)} */}
             <FlatList
                 data={availableDecks}
                 renderItem={renderItem}

@@ -16,12 +16,12 @@ const AddDeck = (props) => {
                 style={styles.TextInputStyle}
                 placeholder="Title"
                 value={newDeckTitle}
-                onChangeText={setNewDeckTitle} />
+                onChangeText={Title => setNewDeckTitle(Title)} />
 
             <TouchableOpacity
                 onPress={() => {
-                    dispatch(addDeck(newDeckTitle))
-                    console.log("Create Deck done", newDeckTitle)
+                    dispatch(addDeck(Math.floor(Math.random() * 10), newDeckTitle))
+                    // console.log("Create Deck done", newDeckTitle)
                 }}
                 style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>
 

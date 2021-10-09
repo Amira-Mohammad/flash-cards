@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { addCard } from '../store/actions/action';
-const AddCard = () => {
+const AddCard = ({ route }) => {
+    const { id, question, answer } = route.params.individualItemForAddCard
     const [newCardQ, setNewCardQ] = useState('')
     const [newCardA, setNewCardA] = useState('')
 
@@ -16,18 +17,18 @@ const AddCard = () => {
                 name="question"
                 placeholder="Question"
                 value={newCardQ}
-                onChange={Question => setNewCardQ(Question)} />
+                onChangeText={Question => setNewCardQ(Question)} />
 
             <TextInput
                 style={styles.TextInputStyle}
                 name="Answer"
                 placeholder="Answer"
                 value={newCardA}
-                onChange={Answer => setNewCardA(Answer)} />
+                onChangeText={Answer => setNewCardA(Answer)} />
             <TouchableOpacity
                 onPress={() => {
-                    console.log("newCardQ", newCardQ)
-                    console.log("newCardA", newCardA)
+                    dispatch(addCard(id, newCardQ, newCardA))
+
                 }}
                 style={styles.Submit}><Text>Submit</Text></TouchableOpacity>
 
