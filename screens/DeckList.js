@@ -19,7 +19,7 @@ function DeckList({ navigation }) {
                 }}
                 style={styles.deckContainer}>
                 <Item title={item.title} />
-                <Item title={`${item.questions.length} Cardsss`} />
+                <Item title={`${item.questions.length} Cards`} />
             </TouchableOpacity>
         </View>
     );
@@ -37,8 +37,8 @@ function DeckList({ navigation }) {
             <FlatList
                 data={availableDecks}
                 renderItem={renderItem}
-                keyExtractor={item => item.index_id}
-            //keyExtractor={item => item.id}
+                // keyExtractor={item => item.index_id.toString()}
+                keyExtractor={item => item.id}
             />
         </View>
     );

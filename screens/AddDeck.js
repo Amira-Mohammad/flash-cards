@@ -21,6 +21,7 @@ const AddDeck = (props) => {
             <TouchableOpacity
                 onPress={() => {
                     dispatch(addDeck(Math.floor(Math.random() * 10), newDeckTitle))
+                    //navigation.navigate("DeckView" , { individualItem: item })
                     // console.log("Create Deck done", newDeckTitle)
                 }}
                 style={styles.Submit}><Text>Create Deck</Text></TouchableOpacity>

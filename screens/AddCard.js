@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { addCard } from '../store/actions/action';
-const AddCard = ({ route }) => {
+const AddCard = ({ route, navigation }) => {
     const { id, question, answer } = route.params.individualItemForAddCard
     const [newCardQ, setNewCardQ] = useState('')
     const [newCardA, setNewCardA] = useState('')
@@ -28,6 +28,10 @@ const AddCard = ({ route }) => {
             <TouchableOpacity
                 onPress={() => {
                     dispatch(addCard(id, newCardQ, newCardA))
+                    setNewCardQ('');
+                    setNewCardA('');
+                    //navigation.navigate("DeckView")
+
 
                 }}
                 style={styles.Submit}><Text>Submit</Text></TouchableOpacity>

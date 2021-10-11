@@ -14,6 +14,7 @@ const DeckReducers = (state = initState, action) => {
             return [
                 ...state,
                 {
+                    // id: Math.floor(Math.random() * 10),
                     title: action.title,
                     questions: []
                 }

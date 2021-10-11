@@ -8,17 +8,15 @@ let Decks = [
     questions: [
       {
         question: 'What is React?',
-        answer: {
-          1: 'A library for managing user interfaces'  // its key is the value of radio btn
-        },
+        answer: 'A library for managing user interfaces'  // its key is the value of radio btn
+        ,
         wrongAnswer: "wrongAnswer",
         score: 2
       },
       {
         question: 'Where do you make Ajax requests in React?',
-        answer: {
-          1: 'The componentDidMount lifecycle event'  // its key is the value of radio btn
-        },
+        answer: 'The componentDidMount lifecycle event'  // its key is the value of radio btn
+        ,
         wrongAnswer: "wrongAnswer",
         score: 2
 
@@ -31,9 +29,8 @@ let Decks = [
     questions: [
       {
         question: 'What is a closure?',
-        answer: {
-          1: 'The combination of a function and the lexical environment within which that function was declared.'  // its key is the value of radio btn
-        },
+        answer: 'The combination of a function and the lexical environment within which that function was declared.'  // its key is the value of radio btn
+        ,
         wrongAnswer: "wrongAnswer",
         score: 2
 

@@ -37,7 +37,7 @@ export default function App() {
                 iconName = focused
                   ? 'list'
                   : 'list';
-              } else if (route.name === 'AddDeck') {
+              } else if (route.name === 'Add Deck') {
                 iconName = focused ? 'add-circle' : 'add-circle';
               }
 
@@ -50,7 +50,7 @@ export default function App() {
           })}
         >
           <Tab.Screen name="Deck List" component={DeckViewStack} />
-          <Tab.Screen name="AddDeck" component={AddDeck} />
+          <Tab.Screen name="Add Deck" component={AddDeck} />
 
         </Tab.Navigator>
       </NavigationContainer>
