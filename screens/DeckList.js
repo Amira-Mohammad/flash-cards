@@ -1,23 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import {
+    View,
+    Text,
+    StyleSheet,
+    FlatList,
+    TouchableOpacity,
+} from "react-native";
+import { useSelector } from "react-redux";
 
 const Item = ({ title, questions }) => (
-
     <View>
         <Text>{title}</Text>
     </View>
 );
 function DeckList({ navigation }) {
-
     const renderItem = ({ item }) => (
-
         <View>
             <TouchableOpacity
                 onPress={() => {
-                    navigation.navigate("DeckView", { individualItem: item })
+                    navigation.navigate("DeckView", { individualItem: item });
                 }}
-                style={styles.deckContainer}>
+                style={styles.deckContainer}
+            >
                 <Item title={item.title} />
                 <Item title={`${item.questions.length} Cards`} />
             </TouchableOpacity>
@@ -25,12 +29,11 @@ function DeckList({ navigation }) {
     );
     let availableDecks;
 
-    availableDecks = useSelector(state => {
+    availableDecks = useSelector((state) => {
+        return state.DeckReducers;
+    });
 
-        return state.DeckReducers
-    })
-
-
+    // console.log(availableDecks);
     return (
         <View style={styles.container}>
             {/* {console.log("availableDecks", availableDecks)} */}
@@ -38,7 +41,7 @@ function DeckList({ navigation }) {
                 data={availableDecks}
                 renderItem={renderItem}
                 // keyExtractor={item => item.index_id.toString()}
-                keyExtractor={item => item.id}
+                keyExtractor={(item) => item.id}
             />
         </View>
     );
@@ -47,9 +50,9 @@ function DeckList({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
         padding: 20,
     },
     deckContainer: {
@@ -57,13 +60,11 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         padding: 5,
         flex: 1,
-        alignItems: 'center',
-        color: 'red',
+        alignItems: "center",
+        color: "red",
         borderRadius: 10,
-        minWidth: 200
+        minWidth: 200,
     },
-
-
 });
 
 export default DeckList;

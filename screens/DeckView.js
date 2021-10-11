@@ -1,10 +1,11 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { clearLocalNotifications, setLocalNotifications } from '../utils/Data';
-import * as Notifications from 'expo-notifications';
+import React from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
+import { clearLocalNotifications, setLocalNotifications } from "../utils/Data";
+import * as Notifications from "expo-notifications";
 
 const DeckView = ({ route, navigation }) => {
-    const { id, title, questions } = route.params.individualItem
+    const { id, title, questions } = route.params.individualItem;
+
     return (
         <View style={styles.container}>
             <Text>DeckView</Text>
@@ -12,17 +13,19 @@ const DeckView = ({ route, navigation }) => {
             <Text>{questions.length}</Text>
             <TouchableOpacity
                 onPress={() => {
-                    navigation.navigate("AddCard")
-                    navigation.navigate("AddCard", { individualItemForAddCard: route.params.individualItem })
+                    navigation.navigate("AddCard");
+                    navigation.navigate("AddCard", {
+                        individualItemForAddCard: route.params.individualItem,
+                    });
                 }}
-                style={styles.addCard}>
+                style={styles.addCard}
+            >
                 <Text>Add Card</Text>
             </TouchableOpacity>
             <TouchableOpacity
                 onPress={() => {
-                    clearLocalNotifications()
-                    setLocalNotifications()
-
+                    clearLocalNotifications();
+                    setLocalNotifications();
 
                     // Notifications.scheduleNotificationAsync({
                     //     content: {
@@ -33,9 +36,16 @@ const DeckView = ({ route, navigation }) => {
                     //         seconds: 10
                     //     },
                     // });
-                    navigation.navigate("StartQuiz", { individualItemForQuiz: route.params.individualItem })
+                    if (questions.length === 0) {
+                        Alert.alert("You must add questions before the quiz");
+                    } else {
+                        navigation.navigate("StartQuiz", {
+                            individualItemForQuiz: route.params.individualItem,
+                        });
+                    }
                 }}
-                style={styles.startQuiz}>
+                style={styles.startQuiz}
+            >
                 <Text>Start Quiz</Text>
             </TouchableOpacity>
         </View>
@@ -47,9 +57,9 @@ export default DeckView;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: "#fff",
+        alignItems: "center",
+        justifyContent: "center",
     },
     addCard: {
         borderWidth: 2,
@@ -57,9 +67,7 @@ const styles = StyleSheet.create({
         padding: 5,
         margin: 2,
         minWidth: 100,
-        backgroundColor: 'grey',
-
-
+        backgroundColor: "grey",
     },
     startQuiz: {
         borderWidth: 2,
@@ -67,7 +75,7 @@ const styles = StyleSheet.create({
         padding: 5,
         margin: 2,
         minWidth: 100,
-        backgroundColor: 'purple',
-        color: 'white'
+        backgroundColor: "purple",
+        color: "white",
     },
 });

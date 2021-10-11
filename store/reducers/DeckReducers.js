@@ -38,7 +38,7 @@ const DeckReducers = (state = initState, action) => {
             const newQuestion = [];
             state.forEach((el) => {
                 if (el.id === action.id) {
-                    console.log("action from reducer", action)
+                    // console.log("action from reducer", action)
                     el.questions.push({
                         question: action.question,
                         answer: action.answer,
