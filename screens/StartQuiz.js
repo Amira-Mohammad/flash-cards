@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import RadioButtonRN from "radio-buttons-react-native";
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel } from 'react-native-simple-radio-button';
 
 const StartQuiz = ({ route, navigation }) => {
     const [next, setNext] = useState(0);
@@ -9,11 +10,13 @@ const StartQuiz = ({ route, navigation }) => {
     const [status, setStatus] = useState("");
     const [show, setShow] = useState(false);
     const [selectedAnswer, setSelectedAnswer] = useState("");
+    const [score, setScore] = useState(0);
+    const [resetRadioBtn, setResetRadioBtn] = useState(null);
     const { title, questions, id } = route.params.individualItemForQuiz;
 
     let availableCard;
     var selectDeck;
-
+    let renderedUI
     availableCard = useSelector((state) => {
         state.DeckReducers.forEach((el) => {
             if (id === el.id) {
@@ -22,55 +25,102 @@ const StartQuiz = ({ route, navigation }) => {
         });
         return selectDeck;
     });
-    //console.log("availableCard", availableCard);
-    //console.log("questions", questions);
-    //   console.log("rrrrrrrr", availableCard.questions.length);
+
+    renderedUI = availableCard.questions.map(((el, i) => {
+        console.log("el", el)
+        const ddd = null;
+        return (
+            <View>
+                <RadioForm
+                    index={i}
+                    radio_props={[
+                        {
+                            label: el.answer, value: 0
+                        },
+                        {
+                            label: el.wrongAnswer, value: 1
+                        }]}
+                    initial={ddd}
+                    buttonColor={'purple'}
+                    onPress={
+                        (value) => setSelectedAnswer(value)
+                        // (value) => { this.setState({ value: value }) }
+
+                    }
+                />
+            </View>
+        )
+    }))
+
 
     const correctAnswer =
         availableCard.questions[status === "next" ? next : previous].answer;
     const wrongAnswer =
         availableCard.questions[status === "next" ? next : previous].wrongAnswer;
-    const data = [
+
+    const radioBtn = renderedUI[status === "next" ? next : previous]
+    const data1 = [
         {
-            label: correctAnswer,
+            label: correctAnswer, value: 0
         },
         {
-            label: wrongAnswer,
-        },
+            label: wrongAnswer, value: 1
+        }
     ];
 
+    // const data = [
+    //     {
+    //         label: correctAnswer,
+    //     },
+    //     {
+    //         label: wrongAnswer,
+    //     },
+    // ];
+
+
+    console.log("selectedAnswer", !(next > availableCard.questions.length - 2) || !selectedAnswer)
     return (
         <View style={styles.container}>
             {availableCard.questions.length > 0 ? (
                 <View>
-                    {/* {console.log(next > availableCard.questions.length - 2 ? true : false)} */}
-                    <Text>
-                        {next + 1}/{availableCard.questions.length}
-                    </Text>
-                    <Text>
-                        {
-                            availableCard.questions[status === "next" ? next : previous]
-                                .question
-                        }
-                    </Text>
-                    <Text>
-                        {
-                            availableCard.questions[status === "next" ? next : previous]
-                                .answer
-                        }
-                    </Text>
-                    <Text>
-                        {
-                            availableCard.questions[status === "next" ? next : previous]
-                                .wrongAnswer
-                        }
-                    </Text>
 
-                    <RadioButtonRN
+                    <View style={styles.centerText}>
+                        <Text>
+                            {next + 1}/{availableCard.questions.length}
+                        </Text>
+                        <Text>
+                            {
+                                availableCard.questions[status === "next" ? next : previous]
+                                    .question
+                            }
+                        </Text>
+                        {/* <Text>
+                            {
+                                availableCard.questions[status === "next" ? next : previous]
+                                    .answer
+                            }
+                        </Text>
+                        <Text>
+                            {
+                                availableCard.questions[status === "next" ? next : previous]
+                                    .wrongAnswer
+                            }
+                        </Text> */}
+                    </View>
+                    {radioBtn}
+                    {/* <RadioForm
+                        radio_props={data1}
+                        initial={!resetRadioBtn && null}
+                        onPress={
+                            (value) => setSelectedAnswer(value)
+                            // (value) => { this.setState({ value: value }) }
+                        }
+                    /> */}
+                    {/* <RadioButtonRN
                         style={{ marginVertical: 40 }}
                         data={data}
                         selectedBtn={(e) => setSelectedAnswer(e)}
-                    />
+                    /> */}
                     <View style={styles.btn}>
                         <TouchableOpacity
                             style={styles.prevBtn}
@@ -79,7 +129,7 @@ const StartQuiz = ({ route, navigation }) => {
                                 setPrevious(next - 1);
                                 setStatus("prev");
                                 setNext(next - 1);
-                                // console.log("next", next - 1)
+
                             }}
                         >
                             <Text>previous</Text>
@@ -92,6 +142,16 @@ const StartQuiz = ({ route, navigation }) => {
                             onPress={() => {
                                 setNext(next + 1);
                                 setStatus("next");
+                                setResetRadioBtn(null)
+                                if (selectedAnswer === 0) {
+
+                                    setScore(score + 1)
+                                    setSelectedAnswer("")
+                                } else {
+                                    setScore(score)
+                                    setSelectedAnswer("")
+                                }
+
                                 // availableCard.questions[next]
                             }}
                         >
@@ -118,14 +178,30 @@ const StartQuiz = ({ route, navigation }) => {
                             </View>
                         ) : null}
                     </View>
-                    <TouchableOpacity
-                        style={styles.startOver}
-                        onPress={() => {
-                            console.log("start the quiz over");
-                        }}
-                    >
-                        <Text>start the quiz over</Text>
-                    </TouchableOpacity>
+                    {!(next > availableCard.questions.length - 2) || !selectedAnswer ? (null) : (
+                        <View>
+                            <TouchableOpacity
+                                style={styles.startOver}
+                                onPress={() => {
+
+                                    setNext(0)
+                                    setScore(0)
+                                }}
+                            >
+                                <Text>start the quiz over</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.startOver}
+                                onPress={() => {
+                                    navigation.goBack()
+                                }}
+                            >
+                                <Text>Go back</Text>
+                            </TouchableOpacity>
+                            <Text>your score is {score}</Text>
+                        </View>)
+                    }
+
                 </View>
             ) : (
                 <View>
@@ -142,7 +218,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center",
-        padding: 20,
+        padding: 10,
     },
     deckContainer: {
         borderWidth: 2,
@@ -200,6 +276,10 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         maxHeight: 30,
     },
+    centerText: {
+        alignItems: 'center',
+        flex: 1
+    }
 });
 
 export default StartQuiz;

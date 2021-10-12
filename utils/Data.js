@@ -137,7 +137,7 @@ export function setLocalNotifications() {
                   body: "you have to take your quiz!???/",
                 },
                 trigger: {
-                  hour: 20
+                  hour: 20,
                   // seconds: 10
                 },
               }

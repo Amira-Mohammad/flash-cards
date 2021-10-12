@@ -5,6 +5,7 @@ import {
     StyleSheet,
     FlatList,
     TouchableOpacity,
+    LogBox
 } from "react-native";
 import { useSelector } from "react-redux";
 
@@ -27,6 +28,10 @@ function DeckList({ navigation }) {
             </TouchableOpacity>
         </View>
     );
+
+    useEffect(() => {
+        LogBox.ignoreAllLogs()
+    })
     let availableDecks;
 
     availableDecks = useSelector((state) => {
@@ -34,6 +39,7 @@ function DeckList({ navigation }) {
     });
 
     // console.log(availableDecks);
+
     return (
         <View style={styles.container}>
             {/* {console.log("availableDecks", availableDecks)} */}
@@ -41,7 +47,7 @@ function DeckList({ navigation }) {
                 data={availableDecks}
                 renderItem={renderItem}
                 // keyExtractor={item => item.index_id.toString()}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => `${item.id}`}
             />
         </View>
     );

@@ -17,4 +17,4 @@ In the project directory, you can run:
 
 ### `expo start`
 
-then a web page of expo server will be run in the browser click on 'Run on Android device/emulator' after make sure that emulator is running
+run the above command then a web page of expo server will be run in the browser .. click on 'Run on Android device/emulator' after make sure that emulator is running

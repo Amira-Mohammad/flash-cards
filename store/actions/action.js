@@ -17,7 +17,7 @@ export function addCard(id, question, answer) {
         type: ADD_CARD,
         id,
         question,
-        answer: { [Math.floor(Math.random() * 2) + 1]: answer },
+        answer,
         wrongAnswer: "wrongAnswer",
         score: 2
     }

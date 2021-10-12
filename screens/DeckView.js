@@ -1,16 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from 'react-redux'
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { clearLocalNotifications, setLocalNotifications } from "../utils/Data";
 import * as Notifications from "expo-notifications";
 
 const DeckView = ({ route, navigation }) => {
+    const [Q_NO, setQ_NO] = useState("")
     const { id, title, questions } = route.params.individualItem;
+    let availableCard;
+    var selectDeck;
+    availableCard = useSelector((state) => {
+        state.DeckReducers.forEach((el) => {
+            if (id === el.id) {
+                selectDeck = el;
+                //setQ_NO(el)
+            }
+
+        });
+        return selectDeck;
+    });
+    //setQ_NO(availableCard)
+    //console.log("availableCard", availableCard.questions)
 
     return (
         <View style={styles.container}>
             <Text>DeckView</Text>
             <Text>{title}</Text>
-            <Text>{questions.length}</Text>
+            <Text>{availableCard.questions.length}</Text>
             <TouchableOpacity
                 onPress={() => {
                     navigation.navigate("AddCard");

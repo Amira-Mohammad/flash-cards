@@ -28,6 +28,7 @@ const AddCard = ({ route, navigation }) => {
             <TouchableOpacity
                 onPress={() => {
                     dispatch(addCard(id, newCardQ, newCardA))
+                    console.log("QA", newCardA, newCardQ)
                     setNewCardQ('');
                     setNewCardA('');
                     //navigation.navigate("DeckView")

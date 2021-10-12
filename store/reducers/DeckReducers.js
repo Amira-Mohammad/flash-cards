@@ -3,6 +3,7 @@ import { ADD_CARD, ADD_DECK } from '../actions/action'
 const initState = Decks
 const DeckReducers = (state = initState, action) => {
     //console.log("stateeeee", state)
+    console.log("Add deck action from reducer", action)
     switch (action.type) {
 
         case ADD_DECK:
@@ -35,10 +36,11 @@ const DeckReducers = (state = initState, action) => {
 
         case ADD_CARD:
             //console.log("ss", state)
+
             const newQuestion = [];
             state.forEach((el) => {
                 if (el.id === action.id) {
-                    // console.log("action from reducer", action)
+
                     el.questions.push({
                         question: action.question,
                         answer: action.answer,
