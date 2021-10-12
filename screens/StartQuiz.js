@@ -178,7 +178,7 @@ const StartQuiz = ({ route, navigation }) => {
                             </View>
                         ) : null}
                     </View>
-                    {!(next > availableCard.questions.length - 2) || !selectedAnswer ? (null) : (
+                    {!(next > availableCard.questions.length - 2) && !selectedAnswer ? (null) : (
                         <View>
                             <TouchableOpacity
                                 style={styles.startOver}
